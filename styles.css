@@ -1,0 +1,456 @@
+/* CSE 110 Lab 3 — CSS Intro */
+
+/* --- 3rd-party font Google Fonts (Inter) --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+:root {
+  --primary: #3a7bd5;
+  /* hex color */
+  --accent: rgb(220, 80, 40);
+  /* rgb() color */
+  --bg-light: hsl(210, 40%, 96%);
+  /* hsl() color */
+  --text-dark: #2c3e50;
+  --radius: 8px;
+  --max-content: 900px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  /* Google Font */
+  background-color: var(--bg-light, #f0f4f8);
+  /* CSS variable with fallback */
+  color: var(--text-dark, #2c3e50);
+  font-size: 16px;
+  /* absolute unit: px */
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+/* Selector list — shared heading base */
+h1,
+h2,
+h3 {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.25;
+}
+
+h1 {
+  font-size: 2rem;
+  /* relative unit: rem */
+  text-align: center;
+  color: white;
+}
+
+h2 {
+  font-size: 1.4rem;
+  color: rgb(30, 50, 80);
+  /* rgb() */
+  text-decoration: underline;
+  text-decoration-color: var(--accent, orange);
+  /* color name as fallback */
+  margin-bottom: 0.75rem;
+}
+
+h3 {
+  font-size: 1.1em;
+  /* relative unit: em */
+  color: hsl(210, 40%, 35%);
+  /* hsl() */
+  margin-bottom: 0.5rem;
+}
+
+/* height property on hr */
+hr {
+  border: none;
+  height: 2px;
+  /* height */
+  background-color: #d0dce8;
+  /* margin longhand */
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+header {
+  background-color: var(--primary, #3a7bd5);
+  color: white;
+  /* padding longhand */
+  padding-top: 1rem;
+  padding-bottom: 0.75rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  position: sticky;
+  /* position: sticky */
+  top: 0;
+  z-index: 100;
+  width: 100%;
+}
+
+/* Child combinator — only direct h2/h3 children of header */
+header>h2 {
+  color: hsla(0, 0%, 100%, 0.85);
+  /* hsla() */
+  font-size: 1em;
+  text-decoration: none;
+  margin: 0;
+}
+
+/* Child combinator */
+header>h3 {
+  color: rgba(255, 255, 255, 0.70);
+  /* rgba() */
+  font-size: 0.9em;
+  margin: 0.25rem 0 0;
+}
+
+/* Child combinator */
+header>nav {
+  display: flex;
+  /* Flexbox */
+  flex-wrap: wrap;
+  /* flex property 1 */
+  gap: 0.25rem;
+  /* flex property 2 */
+  justify-content: center;
+  /* flex property 3 */
+  align-items: center;
+  /* flex property 4 */
+  padding: 0.5rem 0;
+  margin-top: 0.5rem;
+}
+
+/* Attribute selector (prefix match) — nav anchors */
+a[href^="#"] {
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  /* display: inline */
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* Pseudo-class: :hover */
+a[href^="#"]:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: orange;
+  /* color name */
+}
+
+/* Pseudo-class: :active */
+a[href^="#"]:active {
+  background-color: rgba(255, 255, 255, 0.45);
+}
+
+main {
+  max-width: var(--max-content, 900px);
+  width: 100%;
+  min-width: 280px;
+  /* margin longhand with auto */
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 2rem;
+  /* padding shorthand */
+}
+
+.section-card {
+  background-color: white;
+  border-style: solid;
+  /* border-style */
+  border-color: #d0dce8;
+  /* border-color */
+  border-width: 1pt;
+  /* border-width — absolute unit: pt */
+  border-radius: var(--radius, 8px);
+  /* border-radius */
+  margin: 1rem 0;
+  /* margin shorthand */
+  padding: 1rem 1.5rem;
+  /* padding shorthand */
+}
+
+/* Combining two selectors: element + class */
+section.section-card h2 {
+  color: var(--primary, #3a7bd5);
+  text-decoration: none;
+}
+
+#attendance {
+  /* color-mix() */
+  background-color: color-mix(in srgb, var(--primary) 12%, white);
+}
+
+/* Descendant combinator */
+#attendance h2 {
+  /* wider-gamut color: color() with display-p3 */
+  color: color(display-p3 0.15 0.30 0.60);
+  text-decoration: none;
+}
+
+/* Attendance list — Grid container */
+.attendance-grid {
+  display: grid;
+  /* Grid */
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  /* grid prop 1 */
+  gap: 0.75rem;
+  /* grid prop 2 */
+  grid-auto-rows: minmax(48px, auto);
+  /* grid prop 3 */
+  list-style: none;
+  padding: 0;
+  margin-top: 0.75rem;
+}
+
+.attendance-grid li {
+  background-color: white;
+  border: 1px solid #d0dce8;
+  border-radius: var(--radius, 8px);
+  padding: 0.5rem 0.75rem;
+  text-align: center;
+}
+
+#new-business {
+  border-left-width: 4px;
+  border-left-style: solid;
+  border-left-color: var(--accent, rgb(220, 80, 40));
+}
+
+/* General sibling combinator: any <p> that follows <h2> as a sibling */
+#new-business h2~p {
+  font-style: italic;
+  color: hsl(210, 30%, 40%);
+}
+
+/* :has() — target sections that contain <details> elements */
+section:has(details) {
+  /* wider-gamut color: color() with srgb */
+  background-color: color(srgb 0.94 0.96 1.0);
+}
+
+details {
+  margin: 0.5rem 0;
+  /* short hand notation */
+  border: 1px solid #ccd8e8;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+}
+
+summary {
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--primary, #3a7bd5);
+}
+
+/* Pseudo-class on element */
+summary:hover {
+  color: var(--accent, rgb(220, 80, 40));
+}
+
+/* Descendant combinator */
+#diagrams img {
+  width: 100%;
+  /* relative unit: % */
+  max-width: 640px;
+  height: auto;
+  display: block;
+  /* display: block */
+  margin: 1rem auto;
+  border-style: solid;
+  border-color: #ccd8e8;
+  border-width: 1px;
+  border-radius: var(--radius, 8px);
+}
+
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0.5rem 0;
+}
+
+audio {
+  display: block;
+  width: 100%;
+  max-width: 640px;
+  margin: 0.5rem 0;
+}
+
+/* Adjacent sibling combinator: input/select/textarea immediately after a label */
+label+input,
+label+select,
+label+textarea {
+  margin-top: 0.25rem;
+  /* long hand notation */
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+/* Exact attribute selector [attribute=value] */
+input[type="radio"],
+input[type="checkbox"] {
+  margin-right: 0.25rem;
+  cursor: pointer;
+  accent-color: var(--primary, #3a7bd5);
+}
+
+.feedback-form {
+  max-width: 600px;
+  margin: 0 auto;
+  /* margin: auto */
+
+  /* Nested selector: fieldset inside .feedback-form */
+  & fieldset {
+    border-style: solid;
+    border-color: #ccd8e8;
+    border-width: 2px;
+    border-radius: var(--radius, 8px);
+    margin-bottom: 1.5rem;
+    padding: 1rem 1.5rem;
+  }
+
+  & legend {
+    font-weight: 700;
+    color: var(--primary, #3a7bd5);
+    padding: 0 0.5rem;
+  }
+
+  /* Attribute selectors inside nested context */
+  & input[type="text"],
+  & input[type="date"],
+  & textarea,
+  & select {
+    width: 100%;
+    max-width: 380px;
+    padding: 0.4rem 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    min-width: 180px;
+  }
+
+  /* Submit button — uses cm absolute unit */
+  & button[type="submit"] {
+    background-color: var(--primary, #3a7bd5);
+    color: white;
+    border: none;
+    border-radius: var(--radius, 8px);
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    display: block;
+    margin: 1rem auto;
+    min-width: 3cm;
+    /* absolute unit: cm */
+  }
+}
+
+/* Pseudo-class :hover on submit button */
+.feedback-form button[type="submit"]:hover {
+  background-color: color-mix(in srgb, var(--primary) 80%, black);
+}
+
+/* Pseudo-class :active on submit button */
+.feedback-form button[type="submit"]:active {
+  background-color: color-mix(in srgb, var(--primary) 60%, black);
+}
+
+footer {
+  background-color: rgb(30, 50, 80);
+  /* rgb() */
+  color: white;
+  text-align: center;
+  padding: 1.5rem 2rem;
+  /* padding shorthand */
+  margin-top: 2rem;
+  position: relative;
+  /* position: relative */
+}
+
+footer a {
+  color: hsla(210, 80%, 75%, 1);
+  /* hsla() */
+  text-decoration: underline;
+}
+
+footer a:hover {
+  color: orange;
+}
+
+.visually-hidden {
+  display: none;
+}
+
+/* Tablet / smaller laptop */
+@media (max-width: 768px) {
+  body {
+    font-size: 15px;
+  }
+
+  header {
+    position: relative;
+    /* un-stick header on small screens */
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  main {
+    padding: 0 1rem;
+  }
+
+  .attendance-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Flex direction override for narrow screens */
+  header>nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.1rem;
+  }
+}
+
+/* Mobile / very small screen */
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 1.3rem;
+  }
+
+  .attendance-grid {
+    grid-template-columns: 1fr;
+  }
+
+  video {
+    width: 100%;
+  }
+
+  .feedback-form input[type="text"],
+  .feedback-form input[type="date"],
+  .feedback-form textarea,
+  .feedback-form select {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .feedback-form button[type="submit"] {
+    min-width: 80%;
+  }
+}
