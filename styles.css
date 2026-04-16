@@ -1,8 +1,5 @@
 /* CSE 110 Lab 3 — CSS Intro */
 
-/* --- 3rd-party font Google Fonts (Inter) --- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;1,400&display=swap');
-
 :root {
   --primary: #3a7bd5;
   /* hex color */
@@ -163,6 +160,7 @@ main {
   /* padding shorthand */
 }
 
+/* Class Selector */
 .section-card {
   background-color: white;
   border-style: solid;
@@ -185,6 +183,7 @@ section.section-card h2 {
   text-decoration: none;
 }
 
+/* ID Selector */
 #attendance {
   /* color-mix() */
   background-color: color-mix(in srgb, var(--primary) 12%, white);
