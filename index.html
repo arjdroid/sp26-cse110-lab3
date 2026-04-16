@@ -7,7 +7,20 @@
     <meta name="description" content="Meeting notes for an Imaginary Meeting">
     <title>Imaginary Product Meeting Notes</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <!-- Stylesheet -->
+    <!-- Google Fonts (3rd-party font) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Internal styles -->
+    <style>
+      /* Style the next-meeting paragraph in the footer to stand out */
+      footer p:has(b) {
+        font-size: 1.05em;
+        letter-spacing: 0.02em;
+        opacity: 0.9;
+      }
+    </style>
+    <!-- External stylesheet -->
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
@@ -50,7 +63,7 @@
       <hr>
 
       <!-- Agenda -->
-      <section id="agenda" class="section-card">
+      <section id="agenda" class="section-card" style="border-top: 3px solid #3a7bd5;">
         <h2>Agenda</h2>
         <ol>
           <li>Review project goals</li>
